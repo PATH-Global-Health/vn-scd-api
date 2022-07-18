@@ -270,9 +270,9 @@ namespace ScheduleManagement.Controllers
 
         [AllowAnonymous]
         [HttpGet("SyncTarget")]
-        public async Task<IActionResult> SyncTarget()
+        public async Task<IActionResult> SyncTarget(DateTime? from, DateTime? to)
         {
-            var result = await _reportService.SyncTarget();
+            var result = await _reportService.SyncTarget(from, to);
             if (result.Succeed)
                 return Ok(result);
             return BadRequest(result);

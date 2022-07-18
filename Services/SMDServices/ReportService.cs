@@ -49,7 +49,7 @@ namespace Services.SMDServices
         Task<ResultModel> ExposedIndividualForProjectAsync(ICollection<ReportIndividualModel> models, CustomUser user, bool forceDelete = false);
         Task<ResultModel> ExposedPaymentForCBOAsync(ICollection<ReportPaymentModel> models, CustomUser user);
         Task<ResultModel> ExposedPaymentForProjectAsync(ICollection<ReportPaymentModel> models, CustomUser user);
-        Task<ResultModel> SyncTarget();
+        Task<ResultModel> SyncTarget(DateTime? from, DateTime? to);
         Task<ResultModel> ListProvinces(DateTime? from, DateTime? to, CustomUser user);
         Task<ResultModel> ListCBOs(DateTime? from, DateTime? to, CustomUser user);
         ResultModel GetLastUpdated();
@@ -1125,22 +1125,15 @@ namespace Services.SMDServices
             return result;
         }
 
-        public async Task<ResultModel> SyncTarget()
+        public async Task<ResultModel> SyncTarget(DateTime? from, DateTime? to)
         {
             var result = new ResultModel();
             try
             {
                 var effIndicators = _indicatorLookup.GetEfficiencyIndicators().Select(_ => _.Id);
-                var reports = await _dbContext.Reports.BaseFilter().Where(_ => effIndicators.Contains(_.IndicatorId) && !_.TargetValue.HasValue).ToListAsync();
-                var targets = await _dbContext.Targets.BaseFilter().ToListAsync();
-                var ipackages = await _dbContext.ImplementPackages.BaseFilter().ToListAsync();
-                foreach (var item in reports)
-                {
-                    if (item.ValueType == ReportValueType.MONEY)
-                    {
-                        item.AddTargetAmountToReport(ipackages);
-                    }
-                }
+                var reports = await _dbContext.Reports.BaseFilter().FilterReport(from, to).Where(_ => effIndicators.Contains(_.IndicatorId)).ToListAsync();
+                var paymentTemps = reports.Adapt<List<RecalByPaymentModel>>();
+                await _dbContext.RecalIndicatorEffeciency(paymentTemps);
                 var count = await _dbContext.SaveChangesAsync();
                 result.Data = count;
                 result.Succeed = true;

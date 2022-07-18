@@ -563,6 +563,7 @@ namespace Services.Extenstions
                                                                         && f.UnitId == c.UnitId
                                                                         && f.Province == c.Province
                                                                         && f.ValueType == ReportValueType.MONEY);
+                // chỉ cập nhật target nếu có payment report
                 if (payment_report == null)
                 {
                     return;
