@@ -1,0 +1,67 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Class1.cs" />
+    <Compile Remove="DbContexts.cs" />
+    <Compile Remove="DbContexts\ApplicationDbContext.cs" />
+    <Compile Remove="Migrations\20210916032755_updateTableReferTickets.cs" />
+    <Compile Remove="Migrations\20210916032755_updateTableReferTickets.Designer.cs" />
+    <Compile Remove="Migrations\20210921040830_addProfileLinkTable.cs" />
+    <Compile Remove="Migrations\20210921040830_addProfileLinkTable.Designer.cs" />
+    <Compile Remove="Migrations\20211105042511_SMD_1.cs" />
+    <Compile Remove="Migrations\20211105042511_SMD_1.Designer.cs" />
+    <Compile Remove="Migrations\20211105065649_SMD_2.cs" />
+    <Compile Remove="Migrations\20211105065649_SMD_2.Designer.cs" />
+    <Compile Remove="Migrations\20211207071900_SMD_5.cs" />
+    <Compile Remove="Migrations\20211207071900_SMD_5.Designer.cs" />
+    <Compile Remove="Migrations\20211207095419_SMD_5_3.cs" />
+    <Compile Remove="Migrations\20211207095419_SMD_5_3.Designer.cs" />
+    <Compile Remove="Migrations\20211208043507_SMD_5_4.cs" />
+    <Compile Remove="Migrations\20211208043507_SMD_5_4.Designer.cs" />
+    <Compile Remove="Migrations\20211213151341_SMD_6.cs" />
+    <Compile Remove="Migrations\20211213151341_SMD_6.Designer.cs" />
+    <Compile Remove="Migrations\20211220042313_SMD_7.cs" />
+    <Compile Remove="Migrations\20211220042313_SMD_7.Designer.cs" />
+    <Compile Remove="Migrations\20211220043236_SMD_7.cs" />
+    <Compile Remove="Migrations\20211220043236_SMD_7.Designer.cs" />
+    <Compile Remove="Migrations\20220102124854_SMD_9.cs" />
+    <Compile Remove="Migrations\20220102124854_SMD_9.Designer.cs" />
+    <Compile Remove="Migrations\20220102125747_SMD_9.cs" />
+    <Compile Remove="Migrations\20220102125747_SMD_9.Designer.cs" />
+    <Compile Remove="Migrations\20220111062031_SMD_13.cs" />
+    <Compile Remove="Migrations\20220111062031_SMD_13.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Models\ResultModel.cs~RF614278d9.TMP" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="DataAnnotationsValidator.NETCore" Version="1.0.3" />
+    <PackageReference Include="ExcelMapper" Version="5.2.394" />
+    <PackageReference Include="Microsoft.AspNetCore.Http.Features" Version="3.1.5" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.2" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.2" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="3.1.2" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Analyzers" Version="3.1.2" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.1.2">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.2" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Abstractions" Version="3.1.2" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.2">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Proxies" Version="3.1.2" />
+    <PackageReference Include="Swashbuckle.AspNetCore.Newtonsoft" Version="6.3.1" />
+    <PackageReference Include="Z.EntityFramework.Extensions.EFCore" Version="3.0.104" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Ultity\" />
+  </ItemGroup>
+</Project>

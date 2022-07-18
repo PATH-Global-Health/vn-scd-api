@@ -1,0 +1,19 @@
+FROM mcr.microsoft.com/dotnet/core/aspnet:3.1 AS base
+WORKDIR /app
+EXPOSE 5000/tcp
+
+FROM mcr.microsoft.com/dotnet/core/sdk:3.1 AS build
+WORKDIR /src
+COPY ScheduleManagement/ScheduleManagement.csproj ScheduleManagement/
+RUN dotnet restore ScheduleManagement/ScheduleManagement.csproj
+COPY . .
+WORKDIR /src/ScheduleManagement
+RUN dotnet build ScheduleManagement.csproj -c Release -o /app
+
+FROM build AS publish
+RUN dotnet publish ScheduleManagement.csproj -c Release -o /app
+
+FROM base AS final
+WORKDIR /app
+COPY --from=publish /app .
+ENTRYPOINT ["dotnet", "ScheduleManagement.dll", "--server.urls", "http://0.0.0.0:5000"]
